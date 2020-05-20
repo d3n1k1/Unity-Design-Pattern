@@ -7,9 +7,11 @@ using System.Collections;
 
 public class AdapterStructure : MonoBehaviour
 {
-	void Start( )
+    void Start()
     {
         // Create adapter and place a request
+        // Adapterの生成
+        // ClientはあくまでもTargetを知っているだけ
         Target target = new Adapter();
         target.Request();
     }
@@ -35,8 +37,6 @@ class Adapter : Target
 
     public override void Request()
     {
-        // Possibly do some other work
-        //  and then call SpecificRequest
         _adaptee.SpecificRequest();
     }
 }

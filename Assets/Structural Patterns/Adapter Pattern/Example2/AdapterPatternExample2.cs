@@ -7,31 +7,31 @@ using System.Collections;
 
 namespace AdapterPatternExample2
 {
-
     public class AdapterPatternExample2 : MonoBehaviour
     {
         void Start()
         {
-            IEnemyAttacker tank = new EnemyTank();
-
+            // そのままEnemyRobotをnewした場合
             EnemyRobot fredTheRobot = new EnemyRobot();
-            IEnemyAttacker adapter = new EnemyRobotAdaper(fredTheRobot);
+            IEnemyAttacker tank = new EnemyTank();
+            // アダプターパターンを利用した場合
+            IEnemyAttacker adapter = new EnemyRobotAdapter(fredTheRobot);
 
+            Debug.Log("--------fredTheRobot--------");
             fredTheRobot.ReactToHuman("Hans");
             fredTheRobot.WalkForward();
 
+            Debug.Log("--------tank--------");
             tank.AssignDriver("Frank");
             tank.DriveForward();
             tank.FireWeapon();
 
+            Debug.Log("--------adapter--------");
             adapter.AssignDriver("Mark");
             adapter.DriveForward();
             adapter.FireWeapon();
         }
     }
-
-
-
 
     public interface IEnemyAttacker
     {
@@ -39,7 +39,6 @@ namespace AdapterPatternExample2
         void DriveForward();
         void AssignDriver(string driver);
     }
-
 
     public class EnemyTank : IEnemyAttacker
     {
@@ -60,9 +59,6 @@ namespace AdapterPatternExample2
             Debug.Log(driver + " is driving the tank");
         }
     }
-
-
-
 
     // Adaptee:
     public class EnemyRobot
@@ -86,11 +82,11 @@ namespace AdapterPatternExample2
     }
 
 
-    public class EnemyRobotAdaper : IEnemyAttacker
+    public class EnemyRobotAdapter : IEnemyAttacker
     {
         EnemyRobot robot;
 
-        public EnemyRobotAdaper(EnemyRobot robot)
+        public EnemyRobotAdapter(EnemyRobot robot)
         {
             this.robot = robot;
         }

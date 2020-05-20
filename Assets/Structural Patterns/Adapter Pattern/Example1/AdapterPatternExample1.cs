@@ -36,13 +36,17 @@ namespace AdapterPatternExample1
     /// </summary>
     class Compound
     {
+        // 化学物質
         protected string _chemical;
+        // 沸点
         protected float _boilingPoint;
+        // 融点
         protected float _meltingPoint;
+        // 分子量
         protected double _molecularWeight;
+        // 分子式
         protected string _molecularFormula;
 
-        // Constructor
         public Compound(string chemical)
         {
             this._chemical = chemical;
@@ -61,11 +65,8 @@ namespace AdapterPatternExample1
     {
         private ChemicalDatabank _bank;
 
-        // Constructor
-        public RichCompound(string name)
-          : base(name)
-        {
-        }
+        // コンストラクタ
+        public RichCompound(string name) : base(name) { }
 
         public override void Display()
         {
